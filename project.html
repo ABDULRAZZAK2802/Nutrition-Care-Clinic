@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nutrition Care</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4fff5;
+}
+
+header{
+background:#2e8b57;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+nav{
+background:#246b45;
+padding:10px;
+text-align:center;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:15px;
+font-weight:bold;
+}
+
+section{
+padding:30px;
+}
+
+.hero{
+text-align:center;
+padding:50px;
+}
+
+.hero h1{
+font-size:40px;
+color:#2e8b57;
+}
+
+.card{
+background:white;
+padding:20px;
+margin:20px auto;
+max-width:800px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+input,textarea{
+width:100%;
+padding:10px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+background:#2e8b57;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#246b45;
+}
+
+.chat-box{
+height:250px;
+overflow-y:auto;
+border:1px solid #ccc;
+padding:10px;
+margin-bottom:10px;
+background:#fafafa;
+}
+
+.msg{
+background:#dfffe4;
+padding:8px;
+margin:5px;
+border-radius:5px;
+}
+
+footer{
+background:#2e8b57;
+color:white;
+text-align:center;
+padding:15px;
+margin-top:30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Nutrition Care Clinic</h1>
+<p>Healthy Diet • Healthy Life</p>
+</header>
+
+<nav>
+<a href="#about">About</a>
+<a href="#appointment">Appointment</a>
+<a href="#chat">Chat</a>
+<a href="#bmi">BMI</a>
+</nav>
+
+<section class="hero">
+<h1>Welcome to Nutrition Care</h1>
+<p>Book appointments and get expert nutrition guidance.</p>
+</section>
+
+<section id="about">
+<div class="card">
+<h2>About Nutritionist</h2>
+<p>
+Dr. Sarah is a certified nutritionist helping patients
+achieve healthier lifestyles through personalized diet plans.
+</p>
+</div>
+</section>
+
+<section id="appointment">
+<div class="card">
+<h2>Book Appointment</h2>
+
+<input type="text" id="name" placeholder="Patient Name">
+
+<input type="date" id="date">
+
+<input type="time" id="time">
+
+<button onclick="bookAppointment()">
+Book Appointment
+</button>
+
+<p id="result"></p>
+
+</div>
+</section>
+
+<section id="chat">
+<div class="card">
+<h2>Patient Chat</h2>
+
+<div class="chat-box" id="chatBox">
+<div class="msg">
+Doctor: Hello! How can I help you today?
+</div>
+</div>
+
+<input type="text" id="message"
+placeholder="Type message">
+
+<button onclick="sendMessage()">
+Send
+</button>
+
+</div>
+</section>
+
+<section id="bmi">
+<div class="card">
+<h2>BMI Calculator</h2>
+
+<input type="number" id="weight"
+placeholder="Weight (kg)">
+
+<input type="number" id="height"
+placeholder="Height (cm)">
+
+<button onclick="calculateBMI()">
+Calculate BMI
+</button>
+
+<h3 id="bmiResult"></h3>
+
+</div>
+</section>
+
+<footer>
+© 2026 Nutrition Care Clinic
+</footer>
+
+<script>
+
+function bookAppointment(){
+
+let name=document.getElementById("name").value;
+let date=document.getElementById("date").value;
+let time=document.getElementById("time").value;
+
+if(name==="" || date==="" || time===""){
+alert("Please fill all fields");
+return;
+}
+
+document.getElementById("result").innerHTML=
+"Appointment booked for <b>"+name+
+"</b> on "+date+" at "+time;
+
+}
+
+function sendMessage(){
+
+let msg=document.getElementById("message");
+
+if(msg.value==="") return;
+
+let box=document.getElementById("chatBox");
+
+box.innerHTML +=
+'<div class="msg">You: '+msg.value+'</div>';
+
+msg.value="";
+
+box.scrollTop=box.scrollHeight;
+
+}
+
+function calculateBMI(){
+
+let w=parseFloat(
+document.getElementById("weight").value);
+
+let h=parseFloat(
+document.getElementById("height").value)/100;
+
+let bmi=(w/(h*h)).toFixed(2);
+
+document.getElementById("bmiResult").innerHTML=
+"Your BMI: "+bmi;
+
+}
+
+</script>
+
+</body>
+</html>
